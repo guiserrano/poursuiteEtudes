@@ -114,4 +114,6 @@ class FormationsController extends Controller
         // $formations=
         return $this->render('poursuiteEtudesFormationsBundle:FormationsAdmin:statsAdmin.html.twig');
     }
+    public function okeble()
+    
 }
