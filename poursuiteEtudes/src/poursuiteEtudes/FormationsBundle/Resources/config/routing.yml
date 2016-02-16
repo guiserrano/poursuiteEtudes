@@ -1,0 +1,74 @@
+
+#### Tous les path concernant la vue côté visiteur ####
+
+
+poursuite_etudes_formations_homepage:
+    path:     /accueil
+    defaults: { _controller: poursuiteEtudesFormationsBundle:Formations:accueilVisiteur }
+
+poursuite_etudes_formations_stats:
+    path:     /stats
+    defaults: { _controller: poursuiteEtudesFormationsBundle:Formations:statsVisiteur }
+    
+poursuite_etudes_formations_ecoleInge:
+    path:     /ecoleInge
+    defaults: { _controller: poursuiteEtudesFormationsBundle:Formations:ecoleIngeVisiteur }
+    
+poursuite_etudes_formations_license:
+    path:     /license
+    defaults: { _controller: poursuiteEtudesFormationsBundle:Formations:licenseVisiteur }
+    
+poursuite_etudes_formations_licensePro:
+    path:     /licensePro
+    defaults: { _controller: poursuiteEtudesFormationsBundle:Formations:licenseProVisiteur }
+
+# les path du dropdown "informations"    
+    
+poursuite_etudes_formations_bulletinPe:
+    path:     /bulletinPE
+    defaults: { _controller: poursuiteEtudesFormationsBundle:Formations:informationsBulletinPEVisiteur }
+    
+poursuite_etudes_formations_candidater:
+    path:     /candidater
+    defaults: { _controller: poursuiteEtudesFormationsBundle:Formations:informationsCandidaterVisiteur }
+    
+poursuite_etudes_formations_descriptif_parcours:
+    path:     /descriptifParcours
+    defaults: { _controller: poursuiteEtudesFormationsBundle:Formations:informationsDescriptifParcoursVisiteur }
+    
+    
+#### Tous les path concernant la vue côté admin  ####
+
+
+    
+poursuite_etudes_formations_admin:
+    path:     /admin
+    defaults: { _controller: poursuiteEtudesFormationsBundle:Formations:admin }
+    
+poursuite_etudes_formations_etudiantAdmin:
+    path:     /etudiant
+    defaults: { _controller: poursuiteEtudesFormationsBundle:Formations:etudiantAdmin }
+    
+poursuite_etudes_formations_ecoleIngeAdmin:
+    path:     /ecoleIngeAdmin
+    defaults: { _controller: poursuiteEtudesFormationsBundle:Formations:ecoleIngeAdmin }
+    
+poursuite_etudes_formations_informationsAdmin:
+    path:     /informationsAdmin
+    defaults: { _controller: poursuiteEtudesFormationsBundle:Formations:informationsAdmin }
+
+poursuite_etudes_formations_licencesAdmin:
+    path:     /licencesAdmin
+    defaults: { _controller: poursuiteEtudesFormationsBundle:Formations:licencesAdmin }
+    
+poursuite_etudes_formations_licencesProAdmin:
+    path:     /licencesProAdmin
+    defaults: { _controller: poursuiteEtudesFormationsBundle:Formations:licencesProAdmin }
+
+poursuite_etudes_formations_nouvelleAnneeAdmin:
+    path:     /nouvelleAnnee
+    defaults: { _controller: poursuiteEtudesFormationsBundle:Formations:nouvelleAnnee }
+    
+poursuite_etudes_formations_statsAdmin:
+    path:     /statsAdmin
+    defaults: { _controller: poursuiteEtudesFormationsBundle:Formations:statsAdmin }
