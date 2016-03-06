@@ -33,6 +33,7 @@ class Etudiant
      *
      * @ORM\Column(name="prenom", type="string", length=32)
      */
+     
     private $prenom;
 
     /**
@@ -41,14 +42,15 @@ class Etudiant
      * @ORM\Column(name="anneeDiplome", type="integer")
      */
     private $anneeDiplome;
-
+    
     /**
      * @var integer
      *
      * @ORM\Column(name="rang", type="integer")
      */
+     
     private $rang;
-
+    
     /**
      * @var string
      *
@@ -56,12 +58,25 @@ class Etudiant
      */
     private $parcours;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="poursuiteEtudes\FormationsBundle\Entity\Filiere")
+     */
+
+    private $filiere;
+
+   /**
+     * @ORM\OneToOne(targetEntity="poursuiteEtudes\FormationsBundle\Entity\GrilleMoyenne")
+     */
+
+    private $grillemoyenne;
+
 
     /**
      * Get id
      *
      * @return integer 
      */
+     
     public function getId()
     {
         return $this->id;
@@ -119,6 +134,7 @@ class Etudiant
      * @param integer $anneeDiplome
      * @return Etudiant
      */
+     
     public function setAnneeDiplome($anneeDiplome)
     {
         $this->anneeDiplome = $anneeDiplome;
@@ -180,5 +196,51 @@ class Etudiant
     public function getParcours()
     {
         return $this->parcours;
+    }
+
+    /**
+     * Set filiere
+     *
+     * @param \poursuiteEtudes\FormationsBundle\Entity\Filiere $filiere
+     * @return Etudiant
+     */
+    public function setFiliere(\poursuiteEtudes\FormationsBundle\Entity\Filiere $filiere = null)
+    {
+        $this->filiere = $filiere;
+
+        return $this;
+    }
+
+    /**
+     * Get filiere
+     *
+     * @return \poursuiteEtudes\FormationsBundle\Entity\Filiere 
+     */
+    public function getFiliere()
+    {
+        return $this->filiere;
+    }
+    
+    /**
+     * Set grillemoyenne
+     *
+     * @param \poursuiteEtudes\FormationsBundle\Entity\GrilleMoyenne $grillemoyenne
+     * @return Etudiant
+     */
+    public function setGrillemoyenne(\poursuiteEtudes\FormationsBundle\Entity\GrilleMoyenne $grillemoyenne = null)
+    {
+        $this->grillemoyenne = $grillemoyenne;
+
+        return $this;
+    }
+
+    /**
+     * Get grillemoyenne
+     *
+     * @return \poursuiteEtudes\FormationsBundle\Entity\GrilleMoyenne 
+     */
+    public function getGrillemoyenne()
+    {
+        return $this->grillemoyenne;
     }
 }

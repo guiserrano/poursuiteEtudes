@@ -28,6 +28,12 @@ class MetierVise
      */
     private $libelle;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="poursuiteEtudes\FormationsBundle\Entity\Filiere")
+     */
+
+    private $filiere;
+
 
     /**
      * Get id
@@ -37,6 +43,14 @@ class MetierVise
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->filiere = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -60,5 +74,38 @@ class MetierVise
     public function getLibelle()
     {
         return $this->libelle;
+    }
+
+    /**
+     * Add filiere
+     *
+     * @param \poursuiteEtudes\FormationsBundle\Entity\Filiere $filiere
+     * @return MetierVise
+     */
+    public function addFiliere(\poursuiteEtudes\FormationsBundle\Entity\Filiere $filiere)
+    {
+        $this->filiere[] = $filiere;
+
+        return $this;
+    }
+
+    /**
+     * Remove filiere
+     *
+     * @param \poursuiteEtudes\FormationsBundle\Entity\Filiere $filiere
+     */
+    public function removeFiliere(\poursuiteEtudes\FormationsBundle\Entity\Filiere $filiere)
+    {
+        $this->filiere->removeElement($filiere);
+    }
+
+    /**
+     * Get filiere
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getFiliere()
+    {
+        return $this->filiere;
     }
 }

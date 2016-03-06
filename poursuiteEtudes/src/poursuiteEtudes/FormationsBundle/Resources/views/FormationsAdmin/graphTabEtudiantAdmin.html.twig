@@ -1,0 +1,75 @@
+{% extends "::vueMereCoteAdmin.html.twig" %} {#La vue fille 1 hérite de la vue mère #}
+
+
+{% block menuPropreAuBundle %} 
+
+  
+
+
+
+{% endblock %}
+
+
+{% block contenuCentral %} 
+
+            
+                      
+                      {# Code pour afficher la liste des livres #}
+<h2> Statistiques</h1>
+
+                    <a href="{{ path('poursuite_etudes_formations_statsAdmin') }}">
+                        <button type="button" class="btn btn-primary"> retour </button>
+
+<table>
+<tr>
+{# sorting of properties based on query components #}
+    <th>{{ knp_pagination_sortable(tabEtudiant, 'Rang', 'rang') }}
+    {% if tabEtudiant.isSorted('rang') and tabEtudiant.direction == 'desc' %}<i>desc</i>{% elseif tabEtudiant.isSorted('rang') and tabEtudiant.direction == 'asc' %}<i>asc</i>{% else %}<i>cepa</i>{% endif %}
+    </th>
+    <th>{{ knp_pagination_sortable(tabEtudiant, 'Nom', 'nom') }}
+    {% if tabEtudiant.isSorted('nom') and tabEtudiant.direction == 'desc' %}<i>desc</i>{% elseif tabEtudiant.isSorted('nom') and tabEtudiant.direction == 'asc' %}<i>asc</i>{% else %}<i>cepa</i>{% endif %}
+    </th>
+    <th>{{ knp_pagination_sortable(tabEtudiant, 'Prenom', 'prenom') }}
+    {% if tabEtudiant.isSorted('prenom') and tabEtudiant.direction == 'desc' %}<i>desc</i>{% elseif tabEtudiant.isSorted('prenom') and tabEtudiant.direction == 'asc' %}<i>asc</i>{% else %}<i>cepa</i>{% endif %}
+    </th>
+    <th>{{ knp_pagination_sortable(tabEtudiant, 'Année du diplôme', 'anneeDiplome') }}
+    {% if tabEtudiant.isSorted('anneeDiplome') and tabEtudiant.direction == 'desc' %}<i>desc</i>{% elseif tabEtudiant.isSorted('anneeDiplome') and tabEtudiant.direction == 'asc' %}<i>asc</i>{% else %}<i>cepa</i>{% endif %}
+    </th>
+    <th>{{ knp_pagination_sortable(tabEtudiant, 'Filiere', 'filiere') }}
+    {% if tabEtudiant.isSorted('filiere') and tabEtudiant.direction == 'desc' %}<i>desc</i>{% elseif tabEtudiant.isSorted('filiere') and tabEtudiant.direction == 'asc' %}<i>asc</i>{% else %}<i>cepa</i>{% endif %}
+    </th>
+    <th>{{ knp_pagination_sortable(tabEtudiant, 'moyenne math', 'grillemoyenneMaht') }}
+    {% if tabEtudiant.isSorted('grillemoyenneMath') and tabEtudiant.direction == 'desc' %}<i>desc</i>{% elseif tabEtudiant.isSorted('grillemoyenneMath') and tabEtudiant.direction == 'asc' %}<i>asc</i>{% else %}<i>cepa</i>{% endif %}
+    </th>
+    <th>{{ knp_pagination_sortable(tabEtudiant, 'moyenne info', 'grillemoyenneInfo') }}
+    {% if tabEtudiant.isSorted('grillemoyenneInfo') and tabEtudiant.direction == 'desc' %}<i>desc</i>{% elseif tabEtudiant.isSorted('grillemoyenneInfo') and tabEtudiant.direction == 'asc' %}<i>asc</i>{% else %}<i>cepa</i>{% endif %}
+    </th> 
+    <th>{{ knp_pagination_sortable(tabEtudiant, 'moyenne pe', 'grillemoyennePE') }}
+    {% if tabEtudiant.isSorted('grillemoyennePE') and tabEtudiant.direction == 'desc' %}<i>desc</i>{% elseif tabEtudiant.isSorted('grillemoyennePE') and tabEtudiant.direction == 'asc' %}<i>asc</i>{% else %}<i>cepa</i>{% endif %}
+    </th> 
+</tr>
+
+{# table body #}
+{% for etudiant in tabEtudiant %}
+<tr>
+    <td>{{ etudiant.rang }}</td>
+    <td>{{ etudiant.nom }}</td>
+    <td>{{ etudiant.prenom }}</td>
+    <td>{{ etudiant.anneeDiplome }}</td>    
+    <td>{{ etudiant.filiere.intitule }}</td>
+    <td>{{ etudiant.grillemoyenne.math }}</td>
+    <td>{{ etudiant.grillemoyenne.info }}</td>
+    <td>{{ etudiant.grillemoyenne.PE }}</td>
+</tr>
+{% endfor %}
+</table>
+{# display navigation #}
+<div class="navigation">
+    {{ knp_pagination_render(tabEtudiant) }}
+</div>
+
+                    
+                 
+
+
+{% endblock %}

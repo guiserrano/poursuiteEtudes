@@ -56,6 +56,19 @@ poursuite_etudes_formations_ecoleIngeAdmin:
 poursuite_etudes_formations_informationsAdmin:
     path:     /informationsAdmin
     defaults: { _controller: poursuiteEtudesFormationsBundle:Formations:informationsAdmin }
+    
+poursuite_etudes_formations_informationsBulletinPEAdmin:
+    path:     /bulletinPEAdmin
+    defaults: { _controller: poursuiteEtudesFormationsBundle:Formations:informationsBulletinPE }
+    
+poursuite_etudes_formations_candidater:
+    path:     /candidater
+    defaults: { _controller: poursuiteEtudesFormationsBundle:Formations:informationsCandidater }
+    
+poursuite_etudes_formations_descriptif_parcours:
+    path:     /descriptifParcours
+    defaults: { _controller: poursuiteEtudesFormationsBundle:Formations:informationsDescriptifParcoursVisiteur }
+    
 
 poursuite_etudes_formations_licencesAdmin:
     path:     /licencesAdmin
@@ -72,3 +85,15 @@ poursuite_etudes_formations_nouvelleAnneeAdmin:
 poursuite_etudes_formations_statsAdmin:
     path:     /statsAdmin
     defaults: { _controller: poursuiteEtudesFormationsBundle:Formations:statsAdmin }
+    
+poursuite_etudes_formations_ajouterEcoleIngeAdmin:
+    path:     /formulaireEcoleInge
+    defaults: { _controller: poursuiteEtudesFormationsBundle:Formations:ajouterEcoleInge }
+    
+poursuite_etudes_formations_ajouterLicenceProAdmin:
+    path:     /formulaireLicencePro
+    defaults: { _controller: poursuiteEtudesFormationsBundle:Formations:ajouterLicencePro }
+    
+poursuite_etudes_formations_tabEtudiantAdmin:
+    path:     /graphTabEtudiantAdmin
+    defaults: { _controller: poursuiteEtudesFormationsBundle:Formations:graphTabEtudiantAdmin } 

@@ -28,6 +28,11 @@ class MotCle
      */
     private $mot;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="poursuiteEtudes\FormationsBundle\Entity\Filiere")
+     */
+
+    private $filiere;
 
     /**
      * Get id
@@ -60,5 +65,28 @@ class MotCle
     public function getMot()
     {
         return $this->mot;
+    }
+
+    /**
+     * Set filiere
+     *
+     * @param \poursuiteEtudes\FormationsBundle\Entity\Filiere $filiere
+     * @return MotCle
+     */
+    public function setFiliere(\poursuiteEtudes\FormationsBundle\Entity\Filiere $filiere = null)
+    {
+        $this->filiere = $filiere;
+
+        return $this;
+    }
+
+    /**
+     * Get filiere
+     *
+     * @return \poursuiteEtudes\FormationsBundle\Entity\Filiere 
+     */
+    public function getFiliere()
+    {
+        return $this->filiere;
     }
 }

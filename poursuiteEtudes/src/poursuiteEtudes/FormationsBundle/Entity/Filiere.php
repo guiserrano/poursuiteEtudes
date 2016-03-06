@@ -42,6 +42,17 @@ class Filiere
      */
     private $remarques;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="poursuiteEtudes\FormationsBundle\Entity\Formation")
+     */
+
+    private $formation;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="poursuiteEtudes\FormationsBundle\Entity\MetierVise")
+     */
+
+    private $metierVise;
 
     /**
      * Get id

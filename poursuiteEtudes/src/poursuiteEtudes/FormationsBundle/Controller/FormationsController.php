@@ -3,6 +3,8 @@
 namespace poursuiteEtudes\FormationsBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use poursuiteEtudes\FormationsBundle\Etudiant;
 
 class FormationsController extends Controller
 {
@@ -70,7 +72,39 @@ class FormationsController extends Controller
 
     {   //recup la liste des etudiants  
         // $formations=
-        return $this->render('poursuiteEtudesFormationsBundle:FormationsAdmin:etudiantAdmin.html.twig');
+        $request = Request::createFromGlobals();
+        $type = $request->query->get('type');
+        $order = $this->getOrderBy($request->query->get('order'));
+        
+        
+        if (is_null($type))
+            $type = "DESC";
+        $nbResultatPage=6;
+        
+            
+        $repEtudiant = $this->getDoctrine()->getManager()->getRepository('poursuiteEtudesFormationsBundle:Etudiant');
+        $tabEtudiantAdmin = $repEtudiant->findByEtudiantOrder($order, $type);
+        $tabEtudiantAdminFinal = $this->get('knp_paginator')->paginate($tabEtudiantAdmin, $request->query->getInt('page', 1), $nbResultatPage);
+        
+        
+        return $this->render('poursuiteEtudesFormationsBundle:FormationsAdmin:etudiantAdmin.html.twig', array('tabEtudiant'=> $tabEtudiantAdminFinal));
+        
+    }
+    
+    public function getOrderBy ($order)
+    {
+        switch ($order)
+        {
+        case 'rang' : return 'e.rang'; break;
+        case 'nom' : return 'e.nom'; break;
+        case 'prenom' : return 'e.prenom'; break;
+        case 'anneeDiplome' : return 'e.anneeDiplome'; break;
+        case 'filiere' : return 'f.intitule'; break;
+        case 'grillemoyenneMaht' : return 'gm.math'; break;
+        case 'grillemoyenneInfo' : return 'gm.info'; break;
+        case 'grillemoyennePE': return 'gm.PE'; break;
+        default : return 'e.rang'; break;
+        }
     }
     
      public function ecoleIngeAdminAction()
@@ -80,11 +114,33 @@ class FormationsController extends Controller
         return $this->render('poursuiteEtudesFormationsBundle:FormationsAdmin:ecoleIngeAdmin.html.twig');
     }
     
+    
      public function informationsAdminAction()
 
     {   //recup la liste des etudiants  
         // $formations=
         return $this->render('poursuiteEtudesFormationsBundle:FormationsAdmin:informationsAdmin.html.twig');
+    }
+    
+    public function informationsBulletinPEAction()
+    
+    {   //recup la liste des etudiants  
+        // $formations=
+        return $this->render('poursuiteEtudesFormationsBundle:FormationsAdmin:informationsBulletinPE.html.twig');
+    }
+    
+    public function informationsDescriptifParcoursAction()
+    
+    {   //recup la liste des etudiants  
+        // $formations=
+        return $this->render('poursuiteEtudesFormationsBundle:FormationsAdmin:informationsDescriptifParcours.html.twig');
+    }
+    
+    public function informationsCandidaterAction()
+    
+    {   //recup la liste des etudiants  
+        // $formations=
+        return $this->render('poursuiteEtudesFormationsBundle:FormationsAdmin:informationCandidater.html.twig');
     }
     
      public function licencesAdminAction()
@@ -112,8 +168,28 @@ class FormationsController extends Controller
 
     {   //recup la liste des etudiants  
         // $formations=
-        return $this->render('poursuiteEtudesFormationsBundle:FormationsAdmin:statsAdmin.html.twig');
+         return $this->render('poursuiteEtudesFormationsBundle:FormationsAdmin:statsAdmin.html.twig');
+        
     }
-    public function okeble()
     
-}
+
+    public function ajouterEcoleIngeAction()
+    
+    {   //recup la liste des etudiants  
+        // $formations=
+        return $this->render('poursuiteEtudesFormationsBundle:FormationsAdmin:formulaireEcoleInge.html.twig');
+    }
+    
+    public function ajouterLicenceProAction()
+    
+    {   //recup la liste des etudiants  
+        // $formations=
+        return $this->render('poursuiteEtudesFormationsBundle:FormationsAdmin:formulaireLicencePro.html.twig');
+    }
+    
+    public function graphTabEtudiantAdminAction()
+    {
+        return $this->render('poursuiteEtudesFormationsBundle:FormationsAdmin:tabEtudiant.html.twig');
+    }
+
+   }

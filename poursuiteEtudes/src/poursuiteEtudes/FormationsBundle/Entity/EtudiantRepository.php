@@ -12,4 +12,19 @@ use Doctrine\ORM\EntityRepository;
  */
 class EtudiantRepository extends EntityRepository
 {
+    public function findByEtudiantOrder ($order, $type)
+    {
+        $requete=$this->_em->createQueryBuilder()
+            ->select('e')
+            ->from($this->_entityName, 'e')
+            //->lefjoin('poursuiteEtudesFormationsBundle:Filiere', 'f', 'WITH' ,'e.filiere = f.id ')
+            ->join('e.filiere', 'f')
+            ->join('e.grillemoyenne', 'gm')
+            ->addSelect('f')
+            ->addSelect('gm')
+            ->orderBy($order, $type)
+            ;
+        $query = $requete->getQuery();
+        return $query->getResult();
+    }
 }

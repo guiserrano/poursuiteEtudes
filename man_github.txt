@@ -1,5 +1,5 @@
 pour chaque modif de fichier et que je veux enregistrer:
 
 git add --all
-git commit -m "le nom de la modif, si possible date/heure"
+git commit -m "le nom de la modif + votre nom + date/heure + nom du pusher"
 git push -u origin master
