@@ -16,11 +16,15 @@
                       
                       {# Code pour afficher la liste des livres #}
 <h2> Nouvelle Année</h1>
-                      <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis facilisis aliquet interdum. Fusce rutrum, diam vitae semper placerat,
-ligula mauris laoreet nisl, eget viverra ex metus sit amet risus. Sed fringilla urna non viverra tristique. Integer aliquam magna quis ante laoreet,
-vel facilisis turpis laoreet. Phasellus vulputate ante vel est viverra lacinia. Integer hendrerit odio tellus, a pellentesque justo lobortis a.
-Praesent et hendrerit sem. Phasellus ullamcorper posuere velit vitae egestas. Maecenas a felis tincidunt, aliquam elit sed, porta nibh. Donec tellus ligula,
-faucibus quis nunc a, vulputate sollicitudin lectus.</p>
+                      <p> 
+                        <form enctype="multipart/form-data" action="https://projet-19-guillaume-serrano.c9users.io/testImportExcel.php" method="post">
+                          <input type="hidden" name="MAX_FILE_SIZE" value="30000" />
+                          Sélectionner le fichier (.csv) contenant les données de l'année à intégrer à la base de données  : 
+                          <p> </p>
+                          <input name="userfile" type="file" />
+                          <input type="submit" value="Importer les données du fichier" />
+                        </form>
+                      </p>
 
 <p>Pellentesque in nunc sit amet risus pellentesque efficitur at vitae leo. Nullam non sollicitudin nunc, et condimentum enim. 
 Ut gravida fermentum sapien in pellentesque. Aliquam rutrum eu turpis ac fringilla. Phasellus dignissim eget sapien viverra vestibulum.
