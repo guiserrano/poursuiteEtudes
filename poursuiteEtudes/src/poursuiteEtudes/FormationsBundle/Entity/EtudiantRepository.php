@@ -27,4 +27,49 @@ class EtudiantRepository extends EntityRepository
         $query = $requete->getQuery();
         return $query->getResult();
     }
+
+    public function findByFilter ($annee,$sigleEcole, $sigleLicence, $order='e.nom', $type='ASC')
+    {
+        $requete=$this->_em->createQueryBuilder()
+            ->select('e')
+            ->from($this->_entityName, 'e')
+            //->lefjoin('poursuiteEtudesFormationsBundle:Filiere', 'f', 'WITH' ,'e.filiere = f.id ')
+            ->join('e.filiere', 'f')
+            ->join('f.formation', 'fo')
+            ->addSelect('f')
+            ->addSelect('fo')
+            ->orderBy($order,$type);
+            ;
+            
+        if (!is_null ($annee))
+        {
+            $requete-> andWhere ('e.anneeDiplome= :annee')
+                    ->setParameter('annee', $annee)
+                    ;
+        }
+        
+      if (!is_null ($sigleEcole))
+        {
+            $requete->andWhere ('fo.id= :sigle')
+                    ->setParameter('sigle', $sigleEcole)
+                    ;
+        }
+        
+        $query = $requete->getQuery();
+        return $query->getResult();
+    }
+    
+    public function findAnnee ($type='ASC')
+    {
+        $requete=$this->_em->createQueryBuilder()
+            ->select('e.anneeDiplome')
+            ->from($this->_entityName, 'e')
+            ->distinct()
+            ->orderBy ('e.anneeDiplome', $type)
+        ;
+        
+        $query = $requete->getQuery();
+        return $query->getResult();
+    }
+    
 }

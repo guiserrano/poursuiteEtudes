@@ -23,6 +23,7 @@ class PeuplerFiliere extends AbstractFixture implements FixtureInterface, Ordere
             $temps  ->setIntitule($line[1])
                     ->setAlternance($line[2])
                     ->setRemarques($line[3])
+                    ->setFormation($this->getReference("Formation-" . $line[4]))
                     ;
                     
 		    /*if($line[3] != "")
@@ -38,7 +39,6 @@ class PeuplerFiliere extends AbstractFixture implements FixtureInterface, Ordere
             
         }
         fclose($file);
-
 
         $manager->flush();
     }

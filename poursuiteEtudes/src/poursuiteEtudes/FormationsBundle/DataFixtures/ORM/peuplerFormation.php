@@ -38,7 +38,7 @@ class PeuplerFormation extends AbstractFixture implements FixtureInterface, Orde
     
     public function getOrder()
     {
-        return 4; // avant User /!\
+        return 2; // avant User /!\
     }
 }
 ?>

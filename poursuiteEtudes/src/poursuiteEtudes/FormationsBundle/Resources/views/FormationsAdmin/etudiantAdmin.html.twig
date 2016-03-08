@@ -11,6 +11,28 @@
 <h1> Les étudiants </h1>           
                       
                       {# Code pour afficher les stats #}
+                      
+<form name='filtre' method = 'post'>
+        <label for="annees">Années</label>
+        <select id="annees" name="annees">
+            {% for annee in tabAnnee%}
+                <option value="{{annee['anneeDiplome']}}">{{annee['anneeDiplome']}}</option>
+            {% endfor %}
+        </select>    
+            {% for formation in tabFormation%}
+                <label for="formation">{{formation['niveau']}}</label>
+                <select id="formation" name="{{formation['niveau']}}"> <option>Trier par</option>
+                    {% for ecole in tabEcole if ecole.niveau==formation['niveau'] %}
+                        <option value="{{ecole.id}}">{{ecole.sigle}}</option>
+                    {% endfor %}            
+                </select>
+            {% endfor %}
+
+<button name= "filtrer" type="submit" class="btn btn-primary">Filtrer</button>
+
+    
+
+</form>
 
 <table>
 <tr>

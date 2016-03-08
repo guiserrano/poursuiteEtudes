@@ -16,26 +16,42 @@
                       
                       {# Code pour afficher la liste des livres #}
 <h2> Nouvelle Année</h1>
+                      <script> 
+                      verif1= false;
+                      verif2= false;
+                      function verif() {
+                          if (verif1 && verif2) {
+                            document.getElementById("soumettre").disabled=false;
+                          }
+                          
+                        }
+                      function desactiverFile() {
+                          document.getElementById("fichier1").disabled="disabled";
+                          document.getElementById("fichier2").disabled="disabled";
+                      }
+                      </script>
                       <p> 
                         <form enctype="multipart/form-data" action="https://projet-19-guillaume-serrano.c9users.io/testImportExcel.php" method="post">
-                          <input type="hidden" name="MAX_FILE_SIZE" value="30000" />
-                          Sélectionner le fichier (.csv) contenant les données de l'année à intégrer à la base de données  : 
+                          
+                          Sélectionner le fichier contenant les résultats de l'enquête : 
                           <p> </p>
-                          <input name="userfile" type="file" />
-                          <input type="submit" value="Importer les données du fichier" />
+                          <input name="resultatEnquete" id="fichier1"  type="file" onClick="verif1=true"  />
+                          <p></p>
+                          <br>
+                          Sélectionner le fichier contenant le classement des poursuite d'études :
+                          <p></p>
+                          <input name="grilleMoyenne" id="fichier2" type="file" onClick="verif2=true" />
+                          <p></p>
+                          <br>
+                          <input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
+                          
+                          <input type="button" name="Valider" value="Valider" onClick="verif(); desactiverFile();" />
+                          <p></p>
+                          <br>
+                          <br>
+                          <br>
+                          <input type="submit" id="soumettre" name="soumettre" value="Importer" disabled="disabled" />
                         </form>
                       </p>
-
-<p>Pellentesque in nunc sit amet risus pellentesque efficitur at vitae leo. Nullam non sollicitudin nunc, et condimentum enim. 
-Ut gravida fermentum sapien in pellentesque. Aliquam rutrum eu turpis ac fringilla. Phasellus dignissim eget sapien viverra vestibulum.
-Sed consectetur nisl tellus, et dictum sapien accumsan ac. Morbi egestas purus est, in tristique velit aliquet sed. Maecenas metus mi, 
-aliquam interdum erat non, mollis faucibus lorem. Integer dolor risus, iaculis et sodales sed, convallis vulputate nibh. Pellentesque in pellentesque felis.
-Sed hendrerit arcu lacus. Proin semper fringilla dui a ultrices. Duis ex arcu, finibus id commodo non, luctus quis turpis.
-Maecenas eleifend faucibus magna eu ornare. Aliquam mollis, neque vitae commodo luctus, lorem magna gravida nisl,
-ac aliquet purus lectus a orci. Donec eu magna vitae ligula semper lobortis.</p>
-
-                    
-                 
-
-
+                      
 {% endblock %}

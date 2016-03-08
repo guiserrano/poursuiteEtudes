@@ -12,4 +12,29 @@ use Doctrine\ORM\EntityRepository;
  */
 class FormationRepository extends EntityRepository
 {
+        public function findNiveau ($type='ASC')
+    {
+        $requete=$this->_em->createQueryBuilder()
+            ->select('fo.niveau')
+            ->from($this->_entityName, 'fo')
+            ->distinct()
+            ->orderBy ('fo.niveau', $type)
+        ;
+        
+        $query = $requete->getQuery();
+        return $query->getResult();
+    }
+    
+    public function findEcole ($type='ASC')
+    {
+         $requete=$this->_em->createQueryBuilder()
+            ->select('fo')
+            ->from($this->_entityName, 'fo')
+            ->distinct()
+            ->orderBy ('fo.nomComplet', $type)
+        ;
+        
+        $query = $requete->getQuery();
+        return $query->getResult();
+    }
 }

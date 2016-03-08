@@ -5,6 +5,7 @@ namespace poursuiteEtudes\FormationsBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use poursuiteEtudes\FormationsBundle\Etudiant;
+use poursuiteEtudes\FormationsBundle\Formation;
 
 class FormationsController extends Controller
 {
@@ -76,18 +77,36 @@ class FormationsController extends Controller
         $type = $request->query->get('type');
         $order = $this->getOrderBy($request->query->get('order'));
         
-        
         if (is_null($type))
             $type = "DESC";
         $nbResultatPage=6;
         
             
         $repEtudiant = $this->getDoctrine()->getManager()->getRepository('poursuiteEtudesFormationsBundle:Etudiant');
-        $tabEtudiantAdmin = $repEtudiant->findByEtudiantOrder($order, $type);
+        $repFormation= $this->getDoctrine()->getManager()->getRepository('poursuiteEtudesFormationsBundle:Formation');
+        
+        if (empty($_POST))
+        {
+            $tabEtudiantAdmin = $repEtudiant->findByEtudiantOrder($order, $type);
+        }
+        else 
+        {
+           
+            $annee = $_POST['annees'];
+            $niveau = $_POST['ecole'];
+            
+            $tabEtudiantAdmin = $repEtudiant ->findByFilter($annee, $niveau, $order, $type);
+        }
+
+        $tabAnnee = $repEtudiant -> findAnnee();
+        $tabFormation = $repFormation -> findNiveau();
+        //var_dump($tabFormation);
+        $tabEcole = $repFormation -> findEcole();
         $tabEtudiantAdminFinal = $this->get('knp_paginator')->paginate($tabEtudiantAdmin, $request->query->getInt('page', 1), $nbResultatPage);
         
         
-        return $this->render('poursuiteEtudesFormationsBundle:FormationsAdmin:etudiantAdmin.html.twig', array('tabEtudiant'=> $tabEtudiantAdminFinal));
+        return $this->render('poursuiteEtudesFormationsBundle:FormationsAdmin:etudiantAdmin.html.twig', 
+        array('tabEtudiant'=> $tabEtudiantAdminFinal,'tabAnnee'=> $tabAnnee,'tabFormation'=> $tabFormation, 'tabEcole'=>$tabEcole));
         
     }
     

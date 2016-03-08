@@ -2,3 +2,14 @@ services:
 #    poursuite_etudes_formations.example:
 #        class: poursuiteEtudes\FormationsBundle\Example
 #        arguments: [@service_id, "plain_value", %parameter%]
+    poursuite_etudes_formations.admin.formation:
+        class: poursuiteEtudes\FormationsBundle\Admin\FormationAdmin
+        arguments: [~, poursuiteEtudes\FormationsBundle\Entity\Formation, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin, label: Formation}
+
+    poursuite_etudes_formations.admin.etudiant:
+        class: poursuiteEtudes\FormationsBundle\Admin\EtudiantAdmin
+        arguments: [~, poursuiteEtudes\FormationsBundle\Entity\Etudiant, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin, label: Etudiant}
